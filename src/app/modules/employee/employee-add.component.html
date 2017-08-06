@@ -1,0 +1,109 @@
+<h4 class="col-xs-12 col-md-8 offset-md-2 mt-3 mb-2" *ngIf="mode == 'new'">
+	Add new Employee
+</h4>
+<h4 class="col-xs-12 col-md-8 offset-md-2 mt-3 mb-2" *ngIf="mode == 'edit'">
+	Edit Employee details
+</h4>
+
+<form #addEmployee="ngForm" name="addEmployee" (ngSubmit)="onSubmit()" 
+	class="col-xs-12 col-md-8 offset-md-2">
+  <div class="form-group row">
+    <div class="col-xs-12 col-sm-6">
+      <label for="id">Employee Id *</label> <span *ngIf="mode == 'new'">(auto generated)</span>
+      <input type="text" class="form-control" required [(ngModel)]="model.id" id="id" name="id" placeholder="" readonly>
+    </div>
+  </div>
+  <div class="form-group row">
+  	<div class="col-xs-12 col-sm-6">
+	    <label for="firstName">First Name *</label>
+	    <input type="text" class="form-control" required [(ngModel)]="model.firstName" id="firstName" name="firstName" placeholder="Enter First Name" #firstName="ngModel" pattern="[A-Za-z ]*" maxlength=50>
+	    <div *ngIf="firstName.errors && (firstName.dirty)" class="validation-error">
+        <div [hidden]="!firstName.errors.required">
+          First name is required.
+        </div>
+        <div [hidden]="!firstName.errors.pattern">
+          Valid first name is required. (Should contain only Alphabets)
+        </div>
+      </div>
+	  </div>
+
+  	<div class="col-xs-12 col-sm-6">
+	    <label for="lastName">Last Name *</label>
+	    <input type="text" class="form-control" required [(ngModel)]="model.lastName" id="lastName" name="lastName" placeholder="Enter Last Name" #lastName="ngModel" pattern="[A-Za-z ]*" maxlength=50>
+	    <div *ngIf="lastName.errors && (lastName.dirty)" class="validation-error">
+        <div [hidden]="!lastName.errors.required">
+          Last name is required.
+        </div>
+        <div [hidden]="!lastName.errors.pattern">
+          Valid Last name is required. (Should contain only Alphabets)
+        </div>
+      </div>
+  	</div>
+  </div>
+
+  <div class="form-group row">
+  	<div class="col-xs-12 col-sm-6">
+	    <label for="email">Email ID *</label>
+	    <input type="email" class="form-control" required [(ngModel)]="model.email" id="email" name="email" placeholder="Enter Email" #email="ngModel" maxlength=200>
+	    <div *ngIf="email.errors && (email.dirty)" class="validation-error">
+        <div [hidden]="!email.errors.required">
+          
+           Email is required.
+        </div>
+        <div [hidden]="!email.errors.pattern">
+           Valid Email is required. (Ex: example@example.com)
+        </div>
+      </div>
+	  </div>
+	  <div class="col-xs-12 col-sm-6">
+	    <label for="phone">Contact No *</label>
+	    <input type="text" class="form-control" required [(ngModel)]="model.phone" id="phone" name="phone" placeholder="Enter Contact No" #phone="ngModel" maxlength=10 pattern="[0-9]{10,10}">
+	    <div *ngIf="phone.errors && (phone.dirty)" class="validation-error">
+          <div [hidden]="!phone.errors.required">
+           Contact no. is required.
+          </div>
+          <div [hidden]="!phone.errors.pattern">
+            Valid contact no. is required. (Should contain 10 digit number)
+          </div>
+      </div>
+	  </div>
+  </div>
+
+  <div class="form-group row">
+  	<div class="col-xs-12 col-sm-6">
+	    <label for="joining">Date of Joining *</label>
+	    <input type="date" class="form-control" required [(ngModel)]="model.joining" id="joining" name="joining" #joining="ngModel">
+	    <div *ngIf="joining.errors && (joining.dirty)" class="validation-error">
+        <div [hidden]="!joining.errors.required">
+         Date of joining is required.
+        </div>
+      </div>
+	  </div>
+  	<div class="col-xs-12 col-sm-6">
+	    <label for="designation">Designation *</label>
+	    <select class="form-control" id="designation" name="designation" 
+	    [(ngModel)]="model.designation" required>
+	      <option *ngFor="let des of designations" [ngValue]="des.value">{{des.text}}</option>
+	    </select>
+	  </div>
+  </div>
+
+  <div class="form-group">
+    <label for="address">Address *</label>
+    <textarea class="form-control" required [(ngModel)]="model.address" id="address" name="address" rows="3" placeholder="Enter Address" #address="ngModel" maxlength="400"></textarea>
+  	<div *ngIf="address.errors && (address.dirty)" class="validation-error">
+      <div [hidden]="!address.errors.required">
+       Address is required.
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+  	<div class="col-xs-12 col-sm-6 offset-md-4">
+    	<button type="submit" class="btn btn-success" [disabled]="!addEmployee.valid">
+    	<span *ngIf="mode == 'new'">Submit</span>
+    	<span *ngIf="mode == 'edit'">Save</span>
+    	</button>
+  		<button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+  	</div>
+  </div>
+</form>

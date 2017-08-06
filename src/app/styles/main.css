@@ -1,0 +1,49 @@
+.btn {
+	cursor: pointer;
+	height: 46px;
+}
+
+label {
+	color:#D84315;
+	font-weight: 600
+}
+
+.fa {
+	cursor: pointer;
+}
+
+.push-right {
+	float: right;
+}
+
+.ng-dirty.ng-invalid:not(form) {
+	border: nonw;
+	border: 1px solid #b71c1c;
+}
+.validation-error {
+	color: #b71c1c;
+}
+.login-form {
+	width:480px;
+	padding:10px;
+	border-radius: 4px;
+    box-shadow: 0 2px 12px rgba(10,16,20,.24), 0 0 2px rgba(10,16,20,.12);
+    box-sizing: border-box;
+    transition: box-shadow .5s;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px
+}
+
+.dropdown-item, .logout {
+	cursor: pointer;
+}
+
+.topPadding {
+	padding-top: 80px;
+}
+
+table thead {
+	background: black;
+    color: white;
+}

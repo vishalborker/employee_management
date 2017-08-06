@@ -1,3 +1,7 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container">
+	<app-nav *ngIf="isLoggedIn()"></app-nav>
+</div>
+
+<div class="container topPadding">
+	<router-outlet class=""></router-outlet>
+</div>
